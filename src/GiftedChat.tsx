@@ -392,11 +392,11 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
   textInput?: any
 
   state = {
-    isInitialized: false, // initialization will calculate maxHeight before rendering the chat
+    isInitialized: true, // initialization will calculate maxHeight before rendering the chat
     composerHeight: this.props.minComposerHeight,
-    messagesContainerHeight: undefined,
+    messagesContainerHeight: 800,
     typingDisabled: false,
-    text: undefined,
+    text: this.getTextFromProp(this.props.initialText || ''),
     messages: undefined,
   }
 
