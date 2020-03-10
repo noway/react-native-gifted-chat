@@ -402,7 +402,6 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
 
   constructor(props: GiftedChatProps<TMessage>) {
     super(props)
-    this.notifyInputTextReset()
     this.setMaxHeight(0)
 
     this.invertibleScrollViewProps = {
