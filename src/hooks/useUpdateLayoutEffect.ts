@@ -15,6 +15,7 @@ export function useUpdateLayoutEffect(
   useLayoutEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false
+      effect()
     } else {
       effect()
     }
