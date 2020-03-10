@@ -252,7 +252,7 @@ declare class GiftedChat<TMessage extends IMessage = IMessage> extends React.Com
     textInput?: any;
     state: {
         isInitialized: boolean;
-        composerHeight: number | undefined;
+        composerHeight: number;
         messagesContainerHeight: number;
         typingDisabled: boolean;
         text: string;
@@ -290,11 +290,11 @@ declare class GiftedChat<TMessage extends IMessage = IMessage> extends React.Com
     /**
      * Returns the height, based on current window size, without taking the keyboard into account.
      */
-    getBasicMessagesContainerHeight(composerHeight?: number | undefined): number;
+    getBasicMessagesContainerHeight(composerHeight?: number): number;
     /**
      * Returns the height, based on current window size, taking the keyboard into account.
      */
-    getMessagesContainerHeightWithKeyboard(composerHeight?: number | undefined): number;
+    getMessagesContainerHeightWithKeyboard(composerHeight?: number): number;
     safeAreaIphoneX: (bottomOffset: number) => number;
     onKeyboardWillShow: (e: any) => void;
     onKeyboardWillHide: (_e: any) => void;

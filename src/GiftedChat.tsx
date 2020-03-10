@@ -393,8 +393,8 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
 
   state = {
     isInitialized: true, // initialization will calculate maxHeight before rendering the chat
-    composerHeight: this.props.minComposerHeight,
-    messagesContainerHeight: 800,
+    composerHeight: 0,
+    messagesContainerHeight: 0,
     typingDisabled: false,
     text: this.getTextFromProp(this.props.initialText || ''),
     messages: undefined,
@@ -402,6 +402,8 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
 
   constructor(props: GiftedChatProps<TMessage>) {
     super(props)
+    this.notifyInputTextReset()
+    this.setMaxHeight(0)
 
     this.invertibleScrollViewProps = {
       inverted: this.props.inverted,
