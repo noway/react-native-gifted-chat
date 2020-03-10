@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Animated } from 'react-native'
 import { TypingAnimation } from 'react-native-typing-animation'
-import { useUpdateLayoutEffect } from './hooks/useUpdateLayoutEffect'
 
 interface Props {
   isTyping: boolean
@@ -11,18 +10,25 @@ const TypingIndicator = (props: Props) => {
   const [yCoords/*, setYCoords*/] = useState(new Animated.Value(200))
   const [heightScale/*, setHeightScale*/] = useState(new Animated.Value(0))
   const [marginScale/*, setmarginScale*/] = useState(new Animated.Value(0))
+  const prevIsTyping = useRef(false)
+  const [isTypingAnimShown, setTypingAnimShown] = useState(false)
 
   // on isTyping fire side effect
-  useUpdateLayoutEffect(() => {
-    if (props.isTyping) {
-      slideIn()
-    } else {
-      slideOut()
-    }
+  useEffect(() => {
+      if (prevIsTyping.current !== props.isTyping) {
+          if (props.isTyping) {
+              slideIn();
+          }
+          else {
+              slideOut();
+          }
+      }
+      prevIsTyping.current = props.isTyping
   }, [props.isTyping])
 
   // side effect
   const slideIn = () => {
+    setTypingAnimShown(true)
     Animated.parallel([
       Animated.spring(yCoords, {
         toValue: 0,
@@ -52,7 +58,7 @@ const TypingIndicator = (props: Props) => {
         toValue: 0,
         duration: 250,
       }),
-    ]).start()
+    ]).start(() => setTypingAnimShown(false));
   }
 
   return (
@@ -73,12 +79,12 @@ const TypingIndicator = (props: Props) => {
         },
       ]}
     >
-      <TypingAnimation
+      {isTypingAnimShown ? <TypingAnimation
         style={{ marginLeft: 6, marginTop: 7.2 }}
         dotRadius={4}
         dotMargin={5.5}
         dotColor={'rgba(0, 0, 0, 0.38)'}
-      />
+      /> : null}
     </Animated.View>
   )
 }
