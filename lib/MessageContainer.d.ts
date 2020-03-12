@@ -62,7 +62,7 @@ export default class MessageContainer<TMessage extends IMessage = IMessage> exte
         inverted: PropTypes.Requireable<boolean>;
         loadEarlier: PropTypes.Requireable<boolean>;
         invertibleScrollViewProps: PropTypes.Requireable<object>;
-        extraData: PropTypes.Requireable<any[]>;
+        extraData: PropTypes.Requireable<any>;
         scrollToBottom: PropTypes.Requireable<boolean>;
         scrollToBottomOffset: PropTypes.Requireable<number>;
         scrollToBottomComponent: PropTypes.Requireable<(...args: any[]) => any>;

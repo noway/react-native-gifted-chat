@@ -232,7 +232,7 @@ declare class GiftedChat<TMessage extends IMessage = IMessage> extends React.Com
         forceGetKeyboardHeight: PropTypes.Requireable<boolean>;
         inverted: PropTypes.Requireable<boolean>;
         textInputProps: PropTypes.Requireable<object>;
-        extraData: PropTypes.Requireable<object>;
+        extraData: PropTypes.Requireable<any>;
         minComposerHeight: PropTypes.Requireable<number>;
         maxComposerHeight: PropTypes.Requireable<number>;
         alignTop: PropTypes.Requireable<boolean>;

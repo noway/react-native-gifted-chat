@@ -346,7 +346,7 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
     forceGetKeyboardHeight: PropTypes.bool,
     inverted: PropTypes.bool,
     textInputProps: PropTypes.object,
-    extraData: PropTypes.object,
+    extraData: PropTypes.any,
     minComposerHeight: PropTypes.number,
     maxComposerHeight: PropTypes.number,
     alignTop: PropTypes.bool,
