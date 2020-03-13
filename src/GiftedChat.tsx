@@ -733,9 +733,9 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
       this.textInput.focus()
     }
   }
-  blueTextInput() {
+  blurTextInput() {
     if (this.textInput) {
-      this.textInput.blue()
+      this.textInput.blur()
     }
   }
 
