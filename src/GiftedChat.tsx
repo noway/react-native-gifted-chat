@@ -733,6 +733,11 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
       this.textInput.focus()
     }
   }
+  blueTextInput() {
+    if (this.textInput) {
+      this.textInput.blue()
+    }
+  }
 
   onInputSizeChanged = (size: { height: number }) => {
     const newComposerHeight = Math.max(

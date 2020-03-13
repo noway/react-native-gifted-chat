@@ -64,6 +64,8 @@ export interface GiftedChatProps<TMessage extends IMessage = IMessage> {
     quickReplyStyle?: StyleProp<ViewStyle>;
     isCustomViewBottom?: boolean;
     timeTextStyle?: LeftRightStyle<TextStyle>;
+    maxHeight?: number;
+    messagesContainerHeight?: number;
     actionSheet?(): {
         showActionSheetWithOptions: (options: ActionSheetOptions, callback: (i: number) => void) => void;
     };
@@ -100,8 +102,6 @@ export interface GiftedChatProps<TMessage extends IMessage = IMessage> {
     renderQuickReplySend?(): React.ReactNode;
     scrollToBottomComponent?(): React.ReactNode;
     shouldUpdateMessage?(props: Message<TMessage>['props'], nextProps: Message<TMessage>['props']): boolean;
-    maxHeight?: number;
-    messagesContainerHeight?: number;
 }
 export interface GiftedChatState<TMessage extends IMessage = IMessage> {
     isInitialized: boolean;
@@ -307,6 +307,7 @@ declare class GiftedChat<TMessage extends IMessage = IMessage> extends React.Com
     onSend: (messages?: TMessage[], shouldResetInputToolbar?: boolean) => void;
     resetInputToolbar(): void;
     focusTextInput(): void;
+    blueTextInput(): void;
     onInputSizeChanged: (size: {
         height: number;
     }) => void;
