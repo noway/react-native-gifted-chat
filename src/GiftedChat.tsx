@@ -127,6 +127,8 @@ export interface GiftedChatProps<TMessage extends IMessage = IMessage> {
   /* optional prop used to place customView below text, image and video views; default is false */
   isCustomViewBottom?: boolean
   timeTextStyle?: LeftRightStyle<TextStyle>
+  maxHeight?: number
+  messagesContainerHeight?: number
   /* Custom action sheet */
   actionSheet?(): {
     showActionSheetWithOptions: (
@@ -402,7 +404,12 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
 
   constructor(props: GiftedChatProps<TMessage>) {
     super(props)
-    this.setMaxHeight(0)
+    this.setMaxHeight(props.maxHeight || 0)
+    this.setIsFirstLayout(false)
+    this.setState({
+        messagesContainerHeight: props.messagesContainerHeight,
+    })
+
 
     this.invertibleScrollViewProps = {
       inverted: this.props.inverted,
@@ -844,7 +851,7 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
           <ActionSheetProvider
             ref={(component: any) => (this._actionSheetRef = component)}
           >
-            <View style={styles.container} onLayout={this.onMainViewLayout}>
+            <View style={styles.container} /*onLayout={this.onMainViewLayout}*/>
               {this.renderMessages()}
               {this.renderInputToolbar()}
             </View>
