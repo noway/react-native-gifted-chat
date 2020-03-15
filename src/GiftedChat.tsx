@@ -404,12 +404,14 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
 
   constructor(props: GiftedChatProps<TMessage>) {
     super(props)
-    this.setMaxHeight(props.maxHeight || 0)
-    this.setIsFirstLayout(false)
-    this.setState({
-        messagesContainerHeight: props.messagesContainerHeight,
-    })
 
+    if (Platform.OS === 'ios') {
+      this.setMaxHeight(props.maxHeight || 0)
+      this.setIsFirstLayout(false)
+      this.setState({
+          messagesContainerHeight: props.messagesContainerHeight,
+      })
+    }
 
     this.invertibleScrollViewProps = {
       inverted: this.props.inverted,
@@ -793,6 +795,9 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
   }
 
   onMainViewLayout = (e: any) => {
+    if (Platform.OS === 'ios') {
+      return
+    }
     // fix an issue when keyboard is dismissing during the initialization
     const { layout } = e.nativeEvent
     if (
@@ -856,7 +861,7 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
           <ActionSheetProvider
             ref={(component: any) => (this._actionSheetRef = component)}
           >
-            <View style={styles.container} /*onLayout={this.onMainViewLayout}*/>
+            <View style={styles.container} onLayout={this.onMainViewLayout}>
               {this.renderMessages()}
               {this.renderInputToolbar()}
             </View>
