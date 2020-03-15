@@ -405,8 +405,8 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
   constructor(props: GiftedChatProps<TMessage>) {
     super(props)
 
+    this.setMaxHeight(props.maxHeight || 0)
     if (Platform.OS === 'ios') {
-      this.setMaxHeight(props.maxHeight || 0)
       this.setIsFirstLayout(false)
       this.setState({
           messagesContainerHeight: props.messagesContainerHeight,
