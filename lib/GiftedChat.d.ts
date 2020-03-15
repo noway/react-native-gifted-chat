@@ -307,7 +307,7 @@ declare class GiftedChat<TMessage extends IMessage = IMessage> extends React.Com
     onSend: (messages?: TMessage[], shouldResetInputToolbar?: boolean) => void;
     resetInputToolbar(): void;
     focusTextInput(): void;
-    blueTextInput(): void;
+    blurTextInput(): void;
     onInputSizeChanged: (size: {
         height: number;
     }) => void;
